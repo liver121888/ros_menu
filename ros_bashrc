@@ -71,7 +71,23 @@ function ros_menu_env()
 function ros_menu_disable()
 {
     sed -i '/menu_enable/s/true/false/g' ~/ros_menu/config.yaml
-    echo "To enable ros_menu please use ro_menu_enable"
+    echo "To enable ros_menu please use ros_menu_enable"
+}
+
+function ros_menu_select()
+{
+    # read original state
+    ENABLE=$(sed -n 's/menu_enable: \([[:alpha:]]*\)/\1/p' ~/ros_menu/config.yaml)
+    OPTION=$(sed -n 's/ros_option: \([[:digit:]]*.\)*/\1/p' ~/ros_menu/config.yaml)
+    # force to enable, force option to be menu
+    sed -i "/menu_enable/s/${ENABLE// /}/true/g" ~/ros_menu/config.yaml
+    sed -i "/ros_option/s/${OPTION// /}/menu/g" ~/ros_menu/config.yaml
+    echo "Activate ros_menu"
+    echo "Original Enable: ${ENABLE// /}, Original Option: ${OPTION// /}"
+    python3 ~/ros_menu/ros_menu.py ~/ros_menu/config.yaml
+    # reset state
+    sed -i "/menu_enable/s/true/${ENABLE// /}/g" ~/ros_menu/config.yaml
+    sed -i "/ros_option/s/menu/${OPTION// /}/g" ~/ros_menu/config.yaml
 }
 
 function ros_menu_enable()
