@@ -85,6 +85,9 @@ function ros_menu_select()
     echo "Activate ros_menu"
     echo "Original Enable: ${ENABLE// /}, Original Option: ${OPTION// /}"
     python3 ~/ros_menu/ros_menu.py ~/ros_menu/config.yaml
+    if [ -f /tmp/host_sourcefile.txt ]; then
+        source /tmp/host_sourcefile.txt
+    fi
     # reset state
     sed -i "/menu_enable/s/true/${ENABLE// /}/g" ~/ros_menu/config.yaml
     sed -i "/ros_option/s/menu/${OPTION// /}/g" ~/ros_menu/config.yaml
