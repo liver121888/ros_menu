@@ -6,7 +6,7 @@ ADLINK provides Neuron Startup Menu to make your life easier.
 Neuron Startup Menu offers these features:
 1. Install ROS 1, ROS2, and Cyclone DDS for you automatically.
 
-    ![](readme_resource/ros_auto_install.png)    
+    ![](readme_resource/ros_auto_install.png)
 
 2. Prompt ROS menu whenever you opening a new terminal.
 
@@ -151,9 +151,18 @@ ros_menu_upgrade <version>
 
 ```sh
 #Disable ros_menu
-ros_menu_disable 
+ros_menu_disable
 #Enable ros_menu
 ros_menu_enable
+```
+
+# Temporary select an option
+
+* You could temporary select an option by typing `ros_menu_select`
+
+```sh
+#Select an option
+ros_menu_select
 ```
 
 # Uninstall
